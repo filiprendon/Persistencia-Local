@@ -24,8 +24,8 @@ function recuperarCookie(){
 function eliminarCookie(){
     if(InfoUsuario !== ''){
         alert("Voy a eliminar estas cookies y no hay nada que puedas hacer");
-        document.cookie = "usuario= ; max-age=-1";
-        document.cookie = "email= ; max-age=-1";
+        document.cookie = "usuario= ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "email= ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         location.reload();
     } else {
         alert("No tienes ninguna cookie para borrar");
