@@ -1,5 +1,4 @@
 let InfoUsuario = document.cookie;
-let botonBorrar = document
 function EnmagatzemaCookie(){
     let nombreUsuario = document.getElementById('nombre').value;
     let email = document.getElementById('email').value;
@@ -32,3 +31,16 @@ function eliminarCookie(){
     }
     
 }
+
+function guardarNombre() {
+    let nombresAsistente = document.getElementById('nombreAsistente').value;
+    let nombresArray = nombresAsistente.split(',');
+    let nombresGuardados = [];
+
+    nombresGuardados.push(nombresArray);
+
+    document.cookie = `nombres=${JSON.stringify(nombresGuardados)}; expires=Thu, 01 Jan 2099 00:00:00 UTC; path=/`;
+
+    console.log('Nombres actualizados:', nombresGuardados);
+}
+
