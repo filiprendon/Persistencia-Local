@@ -33,14 +33,29 @@ function eliminarCookie(){
 }
 
 function guardarNombre() {
-    let nombresAsistente = document.getElementById('nombreAsistente').value;
-    let nombresArray = nombresAsistente.split(',');
-    let nombresGuardados = [];
+    let nuevoNombre = document.getElementById('nombreAsistente').value.trim();
+    let fechaNacimiento = document.getElementById('fechaNacimiento').value.trim();
+    let localidad = document.getElementById('localidad').value.trim();
 
-    nombresGuardados.push(nombresArray);
+    // Obtener los datos existentes de la cookie si los hay
+    let datosGuardados = [];
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+        let [name, value] = cookie.split('=');
+        if (name.trim() === 'datos') {
+            datosGuardados = JSON.parse(value);
+            break;
+        }
+    }
 
-    document.cookie = `nombres=${JSON.stringify(nombresGuardados)}; expires=Thu, 01 Jan 2099 00:00:00 UTC; path=/`;
+    datosGuardados.push({
+        nombre: nuevoNombre,
+        fechaNacimiento: fechaNacimiento,
+        localidad: localidad
+    });
 
-    console.log('Nombres actualizados:', nombresGuardados);
+    let datosJSON = JSON.stringify(datosGuardados);
+    document.cookie = `datosAsistentes=${datosJSON}; expires=Thu, 01 Jan 2099 00:00:00 UTC; path=/`;
+
+    console.log('Datos actualizados:', datosGuardados);
 }
-
